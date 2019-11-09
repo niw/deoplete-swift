@@ -75,6 +75,8 @@ class Source(Base):
 
 
 class SourceKitten(object):
+    SOURCE_KTITEN_NAME = 'sourcekitten'
+
     def __init__(self, path=None):
         self.__command = SourceKitten.validate_command(path)
 
@@ -108,9 +110,9 @@ class SourceKitten(object):
         if os.access(path, mode=os.X_OK):
             return path
 
-        default = shutil.which('sourcekitten', mode=os.X_OK)
+        default = shutil.which(SourceKitten.SOURCE_KTITEN_NAME, mode=os.X_OK)
         if default is None:
-            raise SourceKittenNotFound(default)
+            raise SourceKittenNotFound(SourceKitten.SOURCE_KTITEN_NAME)
 
         return default
 
